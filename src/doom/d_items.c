@@ -119,6 +119,30 @@ weaponinfo_t	weaponinfo[NUMWEAPONS] =
     },	
 };
 
+ammoinfo_t	ammoinfo[NUMAMMO] =
+{
+	{
+		// bullets
+		200,
+		10
+	},
+	{
+		// shells
+		50,
+		4
+	},
+	{
+		// cells
+		300,
+		20
+	},
+	{
+		// rockets
+		50,
+		1
+	}
+};
+
 
 
 

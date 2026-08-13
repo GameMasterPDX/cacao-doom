@@ -36,6 +36,18 @@ typedef struct
 
 } weaponinfo_t;
 
+// Ammo info: max ammo, clip ammo.
+// a weapon is found with two clip loads,
+// a big item has five clip loads
+typedef struct
+{
+    int		maxammo;
+    int		clipammo;
+
+} ammoinfo_t;
+
 extern  weaponinfo_t    weaponinfo[NUMWEAPONS];
+
+extern  ammoinfo_t    ammoinfo[NUMAMMO];
 
 #endif

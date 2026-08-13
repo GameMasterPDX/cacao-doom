@@ -23,6 +23,7 @@
 #include "doomdef.h"
 #include "dstrings.h"
 #include "sounds.h"
+#include "d_items.h"
 
 #include "deh_main.h"
 #include "deh_misc.h"
@@ -41,14 +42,6 @@
 
 
 #define BONUSADD	6
-
-
-
-
-// a weapon is found with two clip loads,
-// a big item has five clip loads
-int	maxammo[NUMAMMO] = {200, 50, 300, 50};
-int	clipammo[NUMAMMO] = {10, 4, 20, 1};
 
 
 //
@@ -80,9 +73,9 @@ P_GiveAmmo
 	return false;
 		
     if (num)
-	num *= clipammo[ammo];
+	num *= ammoinfo[ammo].clipammo;
     else
-	num = clipammo[ammo]/2;
+	num = ammoinfo[ammo].clipammo/2;
     
     if (gameskill == sk_baby
 	|| gameskill == sk_nightmare)
