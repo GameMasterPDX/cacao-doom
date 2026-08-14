@@ -399,7 +399,7 @@ static void R_GenerateLookup(int texnum)
                         if (badcol)
                         {
                             badcol = 0;
-                            printf("\nWarning: Texture %8.8s "
+                            I_Error ("\nWarning: Texture %8.8s "
                             "(height %d) has bad column(s)"
                             " starting at x = %d.",
                             texture->name, texture->height, x);
@@ -424,11 +424,12 @@ static void R_GenerateLookup(int texnum)
 
         while (--x >= 0)
         {
-            if (!count[x].patches)     // killough 4/9/98
+            if (!count[x].patches) // killough 4/9/98
+            {
                 if (devparm)
                 {
                     // killough 8/8/98
-                    printf("\nR_GenerateLookup:"
+                    I_Error ("\nR_GenerateLookup:"
                     " Column %d is without a patch in texture %.8s",
                     x, texture->name);
                 }
@@ -452,13 +453,14 @@ static void R_GenerateLookup(int texnum)
                         csize += 4*count[x].posts+5;  // 1 stop byte plus 4 bytes per post
                     }
                     csize += height;                  // height bytes of texture data
+            }
         }
 
         texturecompositesize[texnum] = csize;
 
         if (err)       // killough 10/98: non-verbose output
         {
-            printf("\nR_GenerateLookup: Column without a patch in texture %.8s",
+            I_Error ("\nR_GenerateLookup: Column without a patch in texture %.8s",
                    texture->name);
         }
     }
