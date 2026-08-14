@@ -231,8 +231,8 @@ static char     savedescription[32];
 mobj_t*		bodyque[BODYQUESIZE]; 
 int		bodyqueslot; 
  
-int             vanilla_savegame_limit = 1;
-int             vanilla_demo_limit = 1;
+int             vanilla_savegame_limit = 0;
+int             vanilla_demo_limit = 0;
  
 int G_CmdChecksum (ticcmd_t* cmd) 
 { 

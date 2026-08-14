@@ -42,14 +42,14 @@ planefunction_t		ceilingfunc;
 //
 
 // Here comes the obnoxious "visplane".
-#define MAXVISPLANES	128
+#define MAXVISPLANES	16384
 visplane_t		visplanes[MAXVISPLANES];
 visplane_t*		lastvisplane;
 visplane_t*		floorplane;
 visplane_t*		ceilingplane;
 
 // ?
-#define MAXOPENINGS	SCREENWIDTH*64
+#define MAXOPENINGS	SCREENWIDTH*SCREENHEIGHT
 short			openings[MAXOPENINGS];
 short*			lastopening;
 
