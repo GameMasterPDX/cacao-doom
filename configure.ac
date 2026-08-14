@@ -1,14 +1,14 @@
-AC_INIT(Chocolate Doom, 3.1.1,
-        chocolate-doom-dev-list@chocolate-doom.org, chocolate-doom)
+AC_INIT(Cacao Doom, 3.1.1,
+        gamemasterpdx@hell.no, cacao-doom)
 
 PACKAGE_SHORTNAME=${PACKAGE_NAME% Doom}
-PACKAGE_SHORTDESC="Conservative source port"
+PACKAGE_SHORTDESC="Progressive source port"
 PACKAGE_COPYRIGHT="Copyright (C) 1993-2025"
 PACKAGE_LICENSE="GNU General Public License, version 2"
 PACKAGE_MAINTAINER="Simon Howard"
-PACKAGE_URL="https://www.chocolate-doom.org/"
-PACKAGE_RDNS="org.chocolate_doom"
-PACKAGE_BUGREPORT="https://github.com/chocolate-doom/chocolate-doom/issues"
+PACKAGE_URL=""
+PACKAGE_RDNS="org.cacao_doom"
+PACKAGE_BUGREPORT="https://github.com/GameMasterPDX/cacao-doom/issues"
 
 dnl Check for Emscripten environment so we can set necessary environment variables
 AC_ARG_ENABLE(
