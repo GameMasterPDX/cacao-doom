@@ -32,6 +32,7 @@ dstrings.c         dstrings.h   \
 f_finale.c         f_finale.h   \
 f_wipe.c           f_wipe.h     \
 g_game.c           g_game.h     \
+g_umapinfo.c       g_umapinfo.h \
 hu_lib.c           hu_lib.h     \
 hu_stuff.c         hu_stuff.h   \
 info.c             info.h       \
@@ -69,6 +70,7 @@ r_sky.c            r_sky.h      \
                    r_state.h    \
 r_things.c         r_things.h   \
 s_sound.c          s_sound.h    \
+sc_man.c           sc_man.h     \
 sounds.c           sounds.h     \
 statdump.c         statdump.h   \
 st_lib.c           st_lib.h     \
