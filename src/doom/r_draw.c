@@ -147,21 +147,20 @@ void R_DrawColumn (void)
 
         do
         {
-            // Re-map color indices from wall texture column
-            //  using a lighting/special effects LUT.
-            *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            *dest = dc_colormap[dc_source[frac>>FRACBITS]];
 
             dest += SCREENWIDTH;
-            frac += fracstep;
+            if ((frac += fracstep) >= heightmask)
+                frac -= heightmask;
         } while (count--);
     }
-    else
+    else // texture height is a power of 2 -- killough
     {
         do
         {
             // Re-map color indices from wall texture column
             //  using a lighting/special effects LUT.
-            *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            *dest = dc_colormap[dc_source[(frac>>FRACBITS)&heightmask]];
 
             dest += SCREENWIDTH;
             frac += fracstep;
@@ -268,22 +267,26 @@ void R_DrawColumnLow (void)
 
         do
         {
-            // Hack. Does not work corretly.
-            *dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            *dest2 = *dest = dc_colormap[dc_source[frac>>FRACBITS]];
+
             dest += SCREENWIDTH;
             dest2 += SCREENWIDTH;
-        frac += fracstep;
+
+            if ((frac += fracstep) >= heightmask)
+                frac -= heightmask;
         } while (count--);
     }
-    else
+    else // texture height is a power of 2 -- killough
     {
         do
         {
             // Hack. Does not work corretly.
-            *dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            *dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&heightmask]];
             dest += SCREENWIDTH;
             dest2 += SCREENWIDTH;
+
             frac += fracstep;
+
         } while (count--);
     }
 }
