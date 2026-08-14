@@ -368,20 +368,6 @@ void R_DrawPlanes (void)
     int			stop;
     int			angle;
     int                 lumpnum;
-				
-#ifdef RANGECHECK
-    if (ds_p - drawsegs > MAXDRAWSEGS)
-	I_Error ("R_DrawPlanes: drawsegs overflow (%td)",
-		 ds_p - drawsegs);
-    
-    if (lastvisplane - visplanes > MAXVISPLANES)
-	I_Error ("R_DrawPlanes: visplane overflow (%td)",
-		 lastvisplane - visplanes);
-    
-    if (lastopening - openings > MAXOPENINGS)
-	I_Error ("R_DrawPlanes: opening overflow (%td)",
-		 lastopening - openings);
-#endif
 
     for (pl = visplanes ; pl < lastvisplane ; pl++)
     {

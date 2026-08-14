@@ -85,6 +85,7 @@ int			dc_yl;
 int			dc_yh; 
 fixed_t			dc_iscale; 
 fixed_t			dc_texturemid;
+int			dc_texheight; // Tutti-Frutti fix
 
 // first pixel in a column (possibly virtual) 
 byte*			dc_source;		
@@ -104,7 +105,8 @@ void R_DrawColumn (void)
     int			count; 
     pixel_t*		dest;
     fixed_t		frac;
-    fixed_t		fracstep;	 
+    fixed_t		fracstep;
+    int			heightmask = dc_texheight - 1;
  
     count = dc_yh - dc_yl; 
 
@@ -132,16 +134,40 @@ void R_DrawColumn (void)
     // Inner loop that does the actual texture mapping,
     //  e.g. a DDA-lile scaling.
     // This is as fast as it gets.
-    do 
+    if (dc_texheight & heightmask) // not a power of 2 -- killough
     {
-	// Re-map color indices from wall texture column
-	//  using a lighting/special effects LUT.
-	*dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
-	
-	dest += SCREENWIDTH; 
-	frac += fracstep;
-	
-    } while (count--); 
+        heightmask++;
+        heightmask <<= FRACBITS;
+
+        if (frac < 0)
+            while ((frac += heightmask) < 0);
+            else
+                while (frac >= heightmask)
+                    frac -= heightmask;
+
+        do
+        {
+            // Re-map color indices from wall texture column
+            //  using a lighting/special effects LUT.
+            *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+
+            dest += SCREENWIDTH;
+            frac += fracstep;
+        } while (count--);
+    }
+    else
+    {
+        do
+        {
+            // Re-map color indices from wall texture column
+            //  using a lighting/special effects LUT.
+            *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+
+            dest += SCREENWIDTH;
+            frac += fracstep;
+
+        } while (count--);
+    }
 } 
 
 
@@ -213,6 +239,7 @@ void R_DrawColumnLow (void)
     fixed_t		frac;
     fixed_t		fracstep;	 
     int                 x;
+    int			heightmask = dc_texheight - 1;
  
     count = dc_yh - dc_yl; 
 
@@ -220,16 +247,6 @@ void R_DrawColumnLow (void)
     if (count < 0) 
 	return; 
 				 
-#ifdef RANGECHECK 
-    if ((unsigned)dc_x >= SCREENWIDTH
-	|| dc_yl < 0
-	|| dc_yh >= SCREENHEIGHT)
-    {
-	
-	I_Error ("R_DrawColumn: %i to %i at %i", dc_yl, dc_yh, dc_x);
-    }
-    //	dccount++; 
-#endif 
     // Blocky mode, need to multiply by 2.
     x = dc_x << 1;
     
@@ -238,16 +255,37 @@ void R_DrawColumnLow (void)
     
     fracstep = dc_iscale; 
     frac = dc_texturemid + (dc_yl-centery)*fracstep;
-    
-    do 
+    if (dc_texheight & heightmask) // not a power of 2 -- killough
     {
-	// Hack. Does not work corretly.
-	*dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
-	dest += SCREENWIDTH;
-	dest2 += SCREENWIDTH;
-	frac += fracstep; 
+        heightmask++;
+        heightmask <<= FRACBITS;
 
-    } while (count--);
+        if (frac < 0)
+            while ((frac += heightmask) < 0);
+            else
+                while (frac >= heightmask)
+                    frac -= heightmask;
+
+        do
+        {
+            // Hack. Does not work corretly.
+            *dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            dest += SCREENWIDTH;
+            dest2 += SCREENWIDTH;
+        frac += fracstep;
+        } while (count--);
+    }
+    else
+    {
+        do
+        {
+            // Hack. Does not work corretly.
+            *dest2 = *dest = dc_colormap[dc_source[(frac>>FRACBITS)&127]];
+            dest += SCREENWIDTH;
+            dest2 += SCREENWIDTH;
+            frac += fracstep;
+        } while (count--);
+    }
 }
 
 

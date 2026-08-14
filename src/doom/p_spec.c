@@ -75,7 +75,7 @@ typedef struct
 
 
 
-#define MAXANIMS                32
+#define MAXANIMS                4096
 
 
 //
