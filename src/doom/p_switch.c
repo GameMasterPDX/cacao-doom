@@ -633,6 +633,17 @@ P_UseSpecialLine
 	EV_LightTurnOn(line,35);
 	P_ChangeSwitchTexture(line,1);
 	break;
+
+	case 175:
+		// Close, Wait, Then Open
+		EV_DoDoor(line,vld_close30ThenOpen);
+		line->special = 0;
+	break;
+
+	case 196:
+		// Close, Wait, Then Open
+		EV_DoDoor(line,vld_close30ThenOpen);
+	break;
 			
     }
 	
