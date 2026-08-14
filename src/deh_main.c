@@ -36,15 +36,15 @@ static boolean deh_initialized = false;
 
 // If true, we can parse [STRINGS] sections in BEX format.
 
-boolean deh_allow_extended_strings = false;
+boolean deh_allow_extended_strings = true;
 
 // If true, we can do long string replacements.
 
-boolean deh_allow_long_strings = false;
+boolean deh_allow_long_strings = true;
 
 // If true, we can do cheat replacements longer than the originals.
 
-boolean deh_allow_long_cheats = false;
+boolean deh_allow_long_cheats = true;
 
 // If false, dehacked cheat replacements are ignored.
 
@@ -242,38 +242,6 @@ static void DEH_ParseComment(char *comment)
     // is not compatible with Vanilla Doom and you're probably a
     // very naughty person.
     //
-
-    // Allow comments containing this special value to allow string
-    // replacements longer than those permitted by DOS dehacked.
-    // This allows us to use a dehacked patch for doing string 
-    // replacements for emulating Chex Quest.
-    //
-    // If you use this, your dehacked patch may not work in Vanilla
-    // Doom.
-
-    if (strstr(comment, "*allow-long-strings*") != NULL)
-    {
-        deh_allow_long_strings = true;
-    }
-
-    // Allow magic comments to allow longer cheat replacements than
-    // those permitted by DOS dehacked.  This is also for Chex
-    // Quest.
-
-    if (strstr(comment, "*allow-long-cheats*") != NULL)
-    {
-        deh_allow_long_cheats = true;
-    }
-
-    // Allow magic comments to allow parsing [STRINGS] section
-    // that are usually only found in BEX format files. This allows
-    // for substitution of map and episode names when loading
-    // Freedoom/FreeDM IWADs.
-
-    if (strstr(comment, "*allow-extended-strings*") != NULL)
-    {
-        deh_allow_extended_strings = true;
-    }
 }
 
 // Parses a dehacked file by reading from the context
