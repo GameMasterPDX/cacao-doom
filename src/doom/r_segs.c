@@ -281,7 +281,6 @@ void R_RenderSegLoop (void)
 	    dc_yh = yh;
 	    dc_texturemid = rw_midtexturemid;
 	    dc_source = R_GetColumn(midtexture,texturecolumn);
-		dc_texheight = textureheight[midtexture]>>FRACBITS; // Tutti-Frutti fix
 	    colfunc ();
 	    ceilingclip[rw_x] = viewheight;
 	    floorclip[rw_x] = -1;
@@ -304,7 +303,6 @@ void R_RenderSegLoop (void)
 		    dc_yh = mid;
 		    dc_texturemid = rw_toptexturemid;
 		    dc_source = R_GetColumn(toptexture,texturecolumn);
-			dc_texheight = textureheight[toptexture]>>FRACBITS; // Tutti-Frutti fix
 		    colfunc ();
 		    ceilingclip[rw_x] = mid;
 		}
@@ -335,7 +333,6 @@ void R_RenderSegLoop (void)
 		    dc_texturemid = rw_bottomtexturemid;
 		    dc_source = R_GetColumn(bottomtexture,
 					    texturecolumn);
-			dc_texheight = textureheight[bottomtexture]>>FRACBITS; // Tutti-Frutti fix
 		    colfunc ();
 		    floorclip[rw_x] = mid;
 		}

@@ -75,7 +75,7 @@ typedef struct
 
 
 
-#define MAXANIMS                4096
+#define MAXANIMS                32
 
 
 //
@@ -131,7 +131,7 @@ anim_t*		lastanim;
 //
 //      Animating line specials
 //
-#define MAXLINEANIMS            262144
+#define MAXLINEANIMS            64
 // version <= 1.2 did not have a limit and could handle up to 66 scrolling
 // linedefs before displaying adverse effects. All other versions have a limit
 // of 64.
@@ -1489,7 +1489,13 @@ void P_SpawnSpecials (void)
     {
 	switch(lines[i].special)
 	{
-		case 48:
+	  case 48:
+            if (numlinespecials >= maxlineanims)
+            {
+                I_Error("P_SpawnSpecials: Too many scrolling wall linedefs "
+                        "(%d)! (Vanilla limit is %d)", NumScrollers(),
+                        maxlineanims);
+            }
 	    // EFFECT FIRSTCOL SCROLL+
 	    linespeciallist[numlinespecials] = &lines[i];
 	    numlinespecials++;

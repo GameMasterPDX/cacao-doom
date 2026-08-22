@@ -1690,8 +1690,16 @@ void D_DoomMain (void)
     // Generate the WAD hash table.  Speed things up a bit.
     W_GenerateHashTable();
 
+    // Load DEHACKED lumps from WAD files - but only if we give the right
+    // command line parameter.
+
+    //!
+    // @category mod
+    //
     // Load Dehacked patches from DEHACKED lumps contained in one of the
     // loaded PWAD files.
+    //
+    if (M_ParmExists("-dehlump"))
     {
         int i, loaded = 0;
         int numiwadlumps = numlumps;

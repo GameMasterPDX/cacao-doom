@@ -193,7 +193,7 @@ boolean W_ParseCommandLine(void)
             filename = D_TryFindWADByName(myargv[p]);
 
             printf(" adding %s\n", filename);
-            W_MergeFile(filename);
+	    W_AddFile(filename);
             free(filename);
         }
     }

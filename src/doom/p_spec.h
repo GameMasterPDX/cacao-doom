@@ -235,10 +235,10 @@ typedef struct
 
 
  // max # of wall switches in a level
-#define MAXSWITCHES		6400
+#define MAXSWITCHES		50
 
  // 4 players, 4 buttons each at once, max.
-#define MAXBUTTONS		2048
+#define MAXBUTTONS		16
 
  // 1 second, in ticks. 
 #define BUTTONTIME      35             
@@ -300,7 +300,7 @@ typedef struct
 
 #define PLATWAIT		3
 #define PLATSPEED		FRACUNIT
-#define MAXPLATS		122880
+#define MAXPLATS		30
 
 
 extern plat_t*	activeplats[MAXPLATS];

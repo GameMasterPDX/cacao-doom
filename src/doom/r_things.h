@@ -22,7 +22,7 @@
 
 
 
-#define MAXVISSPRITES  	16384
+#define MAXVISSPRITES  	128
 
 extern vissprite_t	vissprites[MAXVISSPRITES];
 extern vissprite_t*	vissprite_p;

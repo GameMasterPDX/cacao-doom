@@ -29,7 +29,6 @@ extern int		dc_yl;
 extern int		dc_yh;
 extern fixed_t		dc_iscale;
 extern fixed_t		dc_texturemid;
-extern int		dc_texheight;
 
 // first pixel in a column
 extern byte*		dc_source;		
