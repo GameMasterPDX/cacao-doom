@@ -23,7 +23,7 @@
 #include "deh_defs.h"
 #include "deh_io.h"
 #include "deh_main.h"
-#include "am_map.h"
+#include "automap/map.h"
 #include "st_stuff.h"
 
 typedef struct 

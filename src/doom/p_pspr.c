@@ -21,7 +21,7 @@
 #include "doomdef.h"
 #include "d_event.h"
 
-#include "deh_misc.h"
+#include "dehacked/misc.h"
 
 #include "m_random.h"
 #include "p_local.h"

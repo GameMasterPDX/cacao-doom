@@ -22,7 +22,7 @@
 #include "deh_defs.h"
 #include "deh_io.h"
 #include "deh_main.h"
-#include "deh_misc.h"
+#include "dehacked/misc.h"
 
 // Dehacked: "Initial Health" 
 // This is the initial health a player has when starting anew.

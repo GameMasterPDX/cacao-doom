@@ -26,7 +26,7 @@
 #include "doomstat.h"
 
 #include "deh_main.h"
-#include "deh_misc.h"
+#include "dehacked/misc.h"
 
 #include "z_zone.h"
 #include "f_finale.h"
@@ -51,7 +51,7 @@
 #include "wi_stuff.h"
 #include "hu_stuff.h"
 #include "st_stuff.h"
-#include "am_map.h"
+#include "automap/map.h"
 #include "statdump.h"
 
 // Needs access to LFB.

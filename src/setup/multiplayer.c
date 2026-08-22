@@ -23,7 +23,7 @@
 #include "d_iwad.h"
 #include "m_config.h"
 #include "m_misc.h"
-#include "doom/d_englsh.h"
+#include "d_englsh.h"
 #include "m_controls.h"
 
 #include "multiplayer.h"

@@ -1,7 +1,7 @@
 
 AM_CFLAGS = @SDL_CFLAGS@                                           \
             @SDLMIXER_CFLAGS@                                      \
-            -I$(top_srcdir)/textscreen -I$(top_srcdir)/src
+            -I$(top_srcdir)/textscreen -I$(top_srcdir)/src/engine -I$(top_srcdir)/src/doom
 
 noinst_LIBRARIES = libsetup.a
 

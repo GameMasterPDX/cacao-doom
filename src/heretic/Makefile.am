@@ -1,5 +1,5 @@
 
-AM_CFLAGS=-I$(top_srcdir)/src                           \
+AM_CFLAGS=-I$(top_srcdir)/src/engine                    \
           -I$(top_srcdir)/textscreen                    \
           @SDL_CFLAGS@ @SDLMIXER_CFLAGS@ @SDLNET_CFLAGS@
 

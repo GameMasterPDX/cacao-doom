@@ -1,4 +1,4 @@
-AM_CFLAGS = -I$(top_srcdir)/src @SDL_CFLAGS@ @SDLMIXER_CFLAGS@ @SDLNET_CFLAGS@
+AM_CFLAGS = -I$(top_srcdir)/src/engine @SDL_CFLAGS@ @SDLMIXER_CFLAGS@ @SDLNET_CFLAGS@
 
 EXTRA_DIST =                    \
         CMakeLists.txt          \
@@ -7,17 +7,17 @@ EXTRA_DIST =                    \
 noinst_LIBRARIES=libdoom.a
 
 libdoom_a_SOURCES =             \
-am_map.c           am_map.h     \
-deh_ammo.c                      \
-deh_bexstr.c                    \
-deh_cheat.c                     \
-deh_doom.c                      \
-deh_frame.c                     \
-deh_misc.c         deh_misc.h   \
-deh_ptr.c                       \
-deh_sound.c                     \
-deh_thing.c                     \
-deh_weapon.c                    \
+automap/map.c           automap/am_map.h     \
+dehacked/ammo.c                      \
+dehacked/bexstr.c                    \
+dehacked/cheat.c                     \
+dehacked/doom.c                      \
+dehacked/frame.c                     \
+dehacked/misc.c         dehacked/misc.h   \
+dehacked/ptr.c                       \
+dehacked/sound.c                     \
+dehacked/thing.c                     \
+dehacked/weapon.c                    \
                    d_englsh.h   \
 d_items.c          d_items.h    \
 d_main.c           d_main.h     \

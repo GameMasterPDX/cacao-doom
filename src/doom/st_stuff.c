@@ -31,7 +31,7 @@
 #include "w_wad.h"
 
 #include "deh_main.h"
-#include "deh_misc.h"
+#include "dehacked/misc.h"
 #include "doomdef.h"
 #include "doomkeys.h"
 
@@ -44,7 +44,7 @@
 #include "p_local.h"
 #include "p_inter.h"
 
-#include "am_map.h"
+#include "automap/map.h"
 #include "m_cheat.h"
 
 #include "s_sound.h"

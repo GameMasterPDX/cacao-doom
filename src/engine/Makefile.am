@@ -1,5 +1,5 @@
 
-SUBDIRS = doom heretic hexen strife setup
+SUBDIRS = ../doom ../heretic ../hexen ../strife ../setup
 
 execgamesdir = ${bindir}
 
@@ -120,8 +120,8 @@ w_file_stdc.c                              \
 w_file_posix.c                             \
 w_file_win32.c                             \
 w_merge.c            w_merge.h             \
-$(top_builddir)/win32/win_opendir.c        \
-$(top_builddir)/win32/win_opendir.h
+../../win32/win_opendir.c \
+../../win32/win_opendir.h
 
 
 MEMORY_NATIVE_SOURCE_FILES=\
@@ -159,39 +159,44 @@ EXTRA_LIBS =                                               \
                @SDLNET_LIBS@
 
 if HAVE_WINDRES
-@PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES_WITH_DEH) doom-res.rc
+@PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES_WITH_DEH) ../data/doom-res.rc
 else
 @PROGRAM_PREFIX@doom_SOURCES=$(SOURCE_FILES_WITH_DEH)
 endif
 
-@PROGRAM_PREFIX@doom_LDADD = doom/libdoom.a $(EXTRA_LIBS)
+@PROGRAM_PREFIX@doom_LDADD = ../doom/libdoom.a $(EXTRA_LIBS)
 
 if HAVE_WINDRES
-@PROGRAM_PREFIX@heretic_SOURCES=$(SOURCE_FILES_WITH_DEH) heretic-res.rc
+@PROGRAM_PREFIX@heretic_SOURCES=$(SOURCE_FILES_WITH_DEH) ../data/heretic-res.rc
 else
 @PROGRAM_PREFIX@heretic_SOURCES=$(SOURCE_FILES_WITH_DEH)
 endif
 
-@PROGRAM_PREFIX@heretic_LDADD = heretic/libheretic.a $(EXTRA_LIBS)
+@PROGRAM_PREFIX@heretic_LDADD = ../heretic/libheretic.a $(EXTRA_LIBS)
 
 if HAVE_WINDRES
-@PROGRAM_PREFIX@hexen_SOURCES=$(SOURCE_FILES) hexen-res.rc
+@PROGRAM_PREFIX@hexen_SOURCES=$(SOURCE_FILES) ../data/hexen-res.rc
 else
 @PROGRAM_PREFIX@hexen_SOURCES=$(SOURCE_FILES)
 endif
 
-@PROGRAM_PREFIX@hexen_LDADD = hexen/libhexen.a $(EXTRA_LIBS)
+@PROGRAM_PREFIX@hexen_LDADD = ../hexen/libhexen.a $(EXTRA_LIBS)
 
 if HAVE_WINDRES
-@PROGRAM_PREFIX@strife_SOURCES=$(SOURCE_FILES_WITH_DEH) strife-res.rc
+@PROGRAM_PREFIX@strife_SOURCES=$(SOURCE_FILES_WITH_DEH) ../data/strife-res.rc
 else
 @PROGRAM_PREFIX@strife_SOURCES=$(SOURCE_FILES_WITH_DEH)
 endif
 
-@PROGRAM_PREFIX@strife_LDADD = strife/libstrife.a $(EXTRA_LIBS)
+@PROGRAM_PREFIX@strife_LDADD = ../strife/libstrife.a $(EXTRA_LIBS)
 
 $(SETUP_BINARIES): @PROGRAM_PREFIX@setup$(EXEEXT)
-	cp @PROGRAM_PREFIX@setup$(EXEEXT) $@
+	@if [ -f $@ ]; then : ; \
+	elif [ -f $(top_builddir)/bin/@PROGRAM_PREFIX@setup$(EXEEXT) ]; then \
+		cp $(top_builddir)/bin/@PROGRAM_PREFIX@setup$(EXEEXT) $@ ; \
+	else \
+		cp @PROGRAM_PREFIX@setup$(EXEEXT) $@ ; \
+	fi
 
 # Make "make" aware of convenience libraries in subdirectories
 
@@ -225,11 +230,11 @@ net_structrw.c       net_structrw.h        \
 z_native.c           z_zone.h
 
 if HAVE_WINDRES
-@PROGRAM_PREFIX@setup_SOURCES=$(SETUP_FILES) $(COMMON_SOURCE_FILES) setup-res.rc
+@PROGRAM_PREFIX@setup_SOURCES=$(SETUP_FILES) $(COMMON_SOURCE_FILES) ../data/setup-res.rc
 else
 @PROGRAM_PREFIX@setup_SOURCES=$(SETUP_FILES) $(COMMON_SOURCE_FILES)
 endif
-@PROGRAM_PREFIX@setup_LDADD = setup/libsetup.a                             \
+@PROGRAM_PREFIX@setup_LDADD = ../setup/libsetup.a                             \
                         $(top_builddir)/textscreen/libtextscreen.a   \
                         @LDFLAGS@ @SDL_LIBS@ @SDLMIXER_LIBS@ @SDLNET_LIBS@
 
@@ -240,47 +245,47 @@ EXTRA_DIST =                        \
 
 metainfodir = $(prefix)/share/metainfo
 metainfo_DATA =                             \
-        @PACKAGE_RDNS@.Doom.metainfo.xml    \
-        @PACKAGE_RDNS@.Heretic.metainfo.xml \
-        @PACKAGE_RDNS@.Hexen.metainfo.xml   \
-        @PACKAGE_RDNS@.Strife.metainfo.xml
+        ../@PACKAGE_RDNS@.Doom.metainfo.xml    \
+        ../@PACKAGE_RDNS@.Heretic.metainfo.xml \
+        ../@PACKAGE_RDNS@.Hexen.metainfo.xml   \
+        ../@PACKAGE_RDNS@.Strife.metainfo.xml
 
-@PACKAGE_RDNS@.Doom.metainfo.xml : Doom.metainfo.xml
-	cp Doom.metainfo.xml $@
+../@PACKAGE_RDNS@.Doom.metainfo.xml : ../data/Doom.metainfo.xml
+	cp ../data/Doom.metainfo.xml $@
 
-@PACKAGE_RDNS@.Heretic.metainfo.xml : Heretic.metainfo.xml
-	cp Heretic.metainfo.xml $@
+../@PACKAGE_RDNS@.Heretic.metainfo.xml : ../data/Heretic.metainfo.xml
+	cp ../data/Heretic.metainfo.xml $@
 
-@PACKAGE_RDNS@.Hexen.metainfo.xml : Hexen.metainfo.xml
-	cp Hexen.metainfo.xml $@
+../@PACKAGE_RDNS@.Hexen.metainfo.xml : ../data/Hexen.metainfo.xml
+	cp ../data/Hexen.metainfo.xml $@
 
-@PACKAGE_RDNS@.Strife.metainfo.xml : Strife.metainfo.xml
-	cp Strife.metainfo.xml $@
+../@PACKAGE_RDNS@.Strife.metainfo.xml : ../data/Strife.metainfo.xml
+	cp ../data/Strife.metainfo.xml $@
 
 appdir = $(prefix)/share/applications
 app_DATA =                                 \
-           @PACKAGE_RDNS@.Doom.desktop    \
-           @PACKAGE_RDNS@.Heretic.desktop \
-           @PACKAGE_RDNS@.Hexen.desktop   \
-           @PACKAGE_RDNS@.Strife.desktop
+           ../@PACKAGE_RDNS@.Doom.desktop    \
+           ../@PACKAGE_RDNS@.Heretic.desktop \
+           ../@PACKAGE_RDNS@.Hexen.desktop   \
+           ../@PACKAGE_RDNS@.Strife.desktop
 
-@PACKAGE_RDNS@.Doom.desktop : Doom.desktop
-	cp Doom.desktop $@
+../@PACKAGE_RDNS@.Doom.desktop : ../data/Doom.desktop
+	cp ../data/Doom.desktop $@
 
-@PACKAGE_RDNS@.Heretic.desktop : Heretic.desktop
-	cp Heretic.desktop $@
+../@PACKAGE_RDNS@.Heretic.desktop : ../data/Heretic.desktop
+	cp ../data/Heretic.desktop $@
 
-@PACKAGE_RDNS@.Hexen.desktop : Hexen.desktop
-	cp Hexen.desktop $@
+../@PACKAGE_RDNS@.Hexen.desktop : ../data/Hexen.desktop
+	cp ../data/Hexen.desktop $@
 
-@PACKAGE_RDNS@.Strife.desktop : Strife.desktop
-	cp Strife.desktop $@
+../@PACKAGE_RDNS@.Strife.desktop : ../data/Strife.desktop
+	cp ../data/Strife.desktop $@
 
 screensaverdir = $(prefix)/share/applications/screensavers
-screensaver_DATA = @PACKAGE_RDNS@.Doom_Screensaver.desktop
+screensaver_DATA = ../@PACKAGE_RDNS@.Doom_Screensaver.desktop
 
-@PACKAGE_RDNS@.Doom_Screensaver.desktop: Doom_Screensaver.desktop
-	cp Doom_Screensaver.desktop $@
+../@PACKAGE_RDNS@.Doom_Screensaver.desktop: ../data/Doom_Screensaver.desktop
+	cp ../data/Doom_Screensaver.desktop $@
 
 CLEANFILES = $(execgames_SCRIPTS) $(metainfo_DATA) $(app_DATA) $(screensaver_DATA)
 
@@ -297,3 +302,13 @@ mus2mid : $(MUS2MID_SRC_FILES)
 	$(CC) -DSTANDALONE -I$(top_builddir) $(CFLAGS) @LDFLAGS@ \
               $(MUS2MID_SRC_FILES) -o $@
 
+              # Create top-level bin directory and move built binaries after EVERYTHING in this directory is done building
+move-binaries: $(execgames_PROGRAMS) $(noinst_PROGRAMS) $(SETUP_BINARIES)
+	$(MKDIR_P) $(top_builddir)/bin
+	-mv $^ $(top_builddir)/bin/ 2>/dev/null || true
+
+# Force 'all-am' to wait for move-binaries
+all-am: move-binaries
+
+clean-local:
+	rm -rf $(top_builddir)/bin
